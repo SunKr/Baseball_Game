@@ -10,9 +10,7 @@
 // strike이다 5, 9는 없으므루 출력은 1strike 0 ball을 출력한다.
 // 입력 7 8 6을 입력했을 경우 7은 ㅣ1strike 8은 숫자는 있지만 위치가 다르므로 ball 이된다.
 // 1strike 1ball 을 출력한다.
-
 //이렇게 출력을 하고 입력을 받으면서 최종식으로 3개의 숫자를 자리까지 모두 일치하게
-
 // 입력하면 게임이 종료된다. 만약 입력받은 숫자중 3개중 한개라도 0이 있을경우 게임을 종료한다.
 
 
@@ -39,8 +37,7 @@ int main()
 	//shuffle algorithm
 	int iTemp, swap1, swap2;
 
-	int iStrike = 0;
-	int iBall = 0;
+	
 
 	//1~9 randomg number
 	for (int i = 0; i < 9; ++i)
@@ -59,13 +56,15 @@ int main()
 		array[i2] = iTemp;
 	}
 
+	int iStrike = 0;
+	int iBall = 0;
+	int number[3] = {};
 
 	while (true)
 	{
-	
-		cout << "base ball game " << endl;
+		cout << array[0] << "\t" << array[1] << "\t" << array[2] << "\t" << endl;
 
-		int number[3] = {};
+		
 		cout << " Pick 3 numbers among 1 ~ 9(0 : END)  :";
 
 		cin >> number[0] >> number[1] >> number[2];
@@ -96,12 +95,18 @@ int main()
 		{
 			for (int j = 0; j < 3; ++j)
 			{
-				if (number[i] == array[j])
+				if (array[i] == number[j])
 				{
-					if (i = j)
+					if (i == j) // 숫자가 같은데 출력이 if 문을 읽지 않는다 뭘까?
+					{
 						++iStrike;
+					}
+						
 					else
+					{
 						++iBall;
+					}
+						
 
 
 					break;
@@ -114,12 +119,18 @@ int main()
 		if (iStrike == 3)
 		{
 			cout << " Strike Out : Game End" << endl;
-
+			break;
+		}
+		else if (iStrike == 0 && iBall == 0)
+		{
+			cout << " Out " << endl;
+		}
+		else
+		{
+			cout << iStrike << " iStrke " << iBall << "iBall" << endl;
 		}
 
 
-		cout << "iStrike :" << iStrike << endl;
-		cout << "iBall   :" << iBall << endl;
 
 
 
