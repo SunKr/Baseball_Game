@@ -35,46 +35,96 @@ int main()
 	int array[10] = {};
 
 
+	//swap algorithm 
+	//shuffle algorithm
+	int iTemp, swap1, swap2;
+
+	int iStrike = 0;
+	int iBall = 0;
+
+	//1~9 randomg number
+	for (int i = 0; i < 9; ++i)
+	{
+		array[i] = i + 1;
+	}
+
+	for (int i = 0; i < 9; ++i)
+	{
+		i1 = rand() % 9;
+		i2 = rand() % 9;
+
+
+		iTemp = array[i1];
+		array[i1] = array[i2];
+		array[i2] = iTemp;
+	}
+
+
 	while (true)
 	{
-		//1~9 randomg number
-		for (int i = 0; i < 9; ++i)
+	
+		cout << "base ball game " << endl;
+
+		int number[3] = {};
+		cout << " Pick 3 numbers among 1 ~ 9(0 : END)  :";
+
+		cin >> number[0] >> number[1] >> number[2];
+
+		// exception
+		// 1.wrong number
+		// 2.same number
+		// 3.redundancy
+		if (number[0] == 0 || number[1] == 0 || number[2] == 0)
 		{
-			array[i] = i + 1;
+			break; // 0 : end program
+		}
+		else if (number[0] <0 || number[0] > 9 || number[1] <0 || number[1] >9
+			|| number[2] <0 || number[2] > 9)
+		{
+			cout << " Wrong number was typed " << endl;
+			continue;
+		}
+		else if (number[0] == number[1] || number[1] == number[2] || number[0] == number[2])
+		{
+			cout << " Redundancy Error" << endl;
+			continue;
 		}
 
+		iStrike = iBall = 0;
 
-		//swap algorithm 
-		//shuffle algorithm
-		int iTemp, swap1, swap2;
-
-		for (int i = 0; i < 9; ++i)
-		{
-			i1 = rand() % 9 ;
-			i2 = rand() % 9 ;
-
-
-			iTemp = array[i1];
-			array[i1] = array[i2];
-			array[i2] = iTemp;
-		}
-
-		// pick 3 random number among 1~9
 		for (int i = 0; i < 3; ++i)
 		{
-			cout << array[i] << endl;
+			for (int j = 0; j < 3; ++j)
+			{
+				if (number[i] == array[j])
+				{
+					if (i = j)
+						++iStrike;
+					else
+						++iBall;
+
+
+					break;
+				}
+				
+			}
 		}
 
 
-		// 3 random number
-		//array[0];
-		//array[1];
-		//array[2];
+		if (iStrike == 3)
+		{
+			cout << " Strike Out : Game End" << endl;
+
+		}
+
+
+		cout << "iStrike :" << iStrike << endl;
+		cout << "iBall   :" << iBall << endl;
 
 
 
-		// break for test
-		break;
+
+		// break for the test
 		
 
 
